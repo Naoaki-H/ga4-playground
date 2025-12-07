@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>GA4 Playground</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- ✅ GA4 gtag スニペット（Measurement ID を差し替え） -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-515552819"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    // ここに自分の Measurement ID を入れる
+    gtag('config', 'G-515552819');
+  </script>
+
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      max-width: 720px;
+      margin: 40px auto;
+      padding: 0 16px;
+      line-height: 1.7;
+    }
+    h1 { margin-bottom: 0.2em; }
+    .btn {
+      display: inline-block;
+      padding: 10px 16px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>GA4 Playground</h1>
+  <p>
+    このページは GA4 の動作確認用のテストサイトです。<br>
+    ページビューやボタンクリックのイベントが GA4 に送信されます。
+  </p>
+
+  <h2>カスタムイベントのテスト</h2>
+  <p>下のボタンをクリックすると、GA4 に <code>click_test_button</code> イベントが送信されます。</p>
+
+  <button class="btn" onclick="sendTestEvent()">
+    テストボタンをクリック
+  </button>
+
+  <script>
+    function sendTestEvent() {
+      gtag('event', 'click_test_button', {
+        label: 'main_cta',
+        ts: Date.now()
+      });
+      alert('カスタムイベント「click_test_button」を送信しました（DebugView で見てみてください）');
+    }
+  </script>
+</body>
+</html>
